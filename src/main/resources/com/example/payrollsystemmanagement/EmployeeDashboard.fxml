@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.payrollsystemmanagement.EmployeeDashboardController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <!-- Top Header -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-background-color: #336699;">
+            <Label text="Employee Dashboard" style="-fx-font-size: 18px; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label fx:id="welcomeLabel" style="-fx-text-fill: white;"/>
+                <Button text="Logout" onAction="#handleLogout"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Left Navigation -->
+    <left>
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
+            <Button fx:id="btnProfile" text="My Profile" onAction="#showProfile"/>
+            <Button fx:id="btnAttendance" text="My Attendance" onAction="#showAttendance"/>
+            <Button fx:id="btnPayrollInfo" text="Payroll Info" onAction="#showPayrollInfo"/>
+            <Button fx:id="btnNotifications" text="Notifications" onAction="#showNotifications"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="contentPane" style="-fx-padding: 20;">
+            <VBox spacing="20" alignment="TOP_LEFT">
+                <Text text="Welcome to your dashboard!" style="-fx-font-size: 20px;"/>
+                <Label text="Use the navigation to explore your employee panel."/>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>
