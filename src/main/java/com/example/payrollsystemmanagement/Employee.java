@@ -12,7 +12,7 @@ public class Employee {
     private final IntegerProperty workingHours;
 
     public Employee(String id, String name, String department, String position, double salary, int hours) {
-        this.id = new SimpleStringProperty();
+        this.id = new SimpleStringProperty(id); // Fixed: Properly initialize ID
         this.name = new SimpleStringProperty(name);
         this.department = new SimpleStringProperty(department);
         this.position = new SimpleStringProperty(position);
@@ -20,6 +20,7 @@ public class Employee {
         this.workingHours = new SimpleIntegerProperty(hours);
     }
 
+    // Property Getters
     public StringProperty idProperty() { return id; }
     public StringProperty nameProperty() { return name; }
     public StringProperty departmentProperty() { return department; }
@@ -27,6 +28,7 @@ public class Employee {
     public DoubleProperty salaryProperty() { return salary; }
     public IntegerProperty workingHoursProperty() { return workingHours; }
 
+    // Value Getters and Setters
     public String getId() { return id.get(); }
     public void setId(String id) { this.id.set(id); }
 

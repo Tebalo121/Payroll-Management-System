@@ -91,9 +91,57 @@ public class employee_managementController {
     private void handleDelete() {
         Employee selected = view.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showError("Please select an employee to delete.");
+            showAlert("No Selection", "Please select an employee to delete");
             return;
         }
+
+        // Confirmation dialog
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirm Deletion");
+        confirmation.setHeaderText("Delete Employee");
+        confirmation.setContentText("Are you sure you want to delete " + selected.getName() + "?");
+
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try (Connection conn = DatabaseConnection.getConnection()) {
+                    // Start transaction
+                    conn.setAutoCommit(false);
+
+                    try {
+                        // First delete related salary records
+                        String deleteSalarySQL = "DELETE FROM salary WHERE employee_id = ?";
+                        try (PreparedStatement salaryStmt = conn.prepareStatement(deleteSalarySQL)) {
+                            salaryStmt.setString(1, selected.getId());
+                            salaryStmt.executeUpdate();
+                        }
+
+                        // Then delete employee
+                        String deleteEmployeeSQL = "DELETE FROM employees WHERE employee_id = ?";
+                        try (PreparedStatement employeeStmt = conn.prepareStatement(deleteEmployeeSQL)) {
+                            employeeStmt.setString(1, selected.getId());
+                            int affectedRows = employeeStmt.executeUpdate();
+
+                            if (affectedRows > 0) {
+                                conn.commit();
+                                employeeList.remove(selected);
+                                showAlert("Success", "Employee deleted successfully");
+                            } else {
+                                conn.rollback();
+                                showAlert("Error", "Failed to delete employee");
+                            }
+                        }
+                    } catch (SQLException e) {
+                        conn.rollback();
+                        showAlert("Database Error", "Error deleting employee: " + e.getMessage());
+                    } finally {
+                        conn.setAutoCommit(true);
+                    }
+                } catch (SQLException e) {
+                    showAlert("Database Error", "Could not connect to database: " + e.getMessage());
+                }
+            }
+        });
+
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String sql = "DELETE FROM employees WHERE employee_id=?";
@@ -104,6 +152,9 @@ public class employee_managementController {
         } catch (SQLException e) {
             showError("Error deleting employee: " + e.getMessage());
         }
+    }
+
+    private void showAlert(String noSelection, String s) {
     }
 
     private void loadEmployees() {

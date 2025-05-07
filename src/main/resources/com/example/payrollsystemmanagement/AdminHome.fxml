@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,16 +18,12 @@
     <!-- Summary Cards -->
     <HBox alignment="CENTER" spacing="20">
 
-        <VBox alignment="CENTER" prefHeight="100" prefWidth="200" styleClass="summary-card">
-            <Label fx:id="pendingRequestsLabel" styleClass="card-value" text="0" />
-        </VBox>
+        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="200" styleClass="summary-card" />
     </HBox>
-
-    <!-- Recent Activity Table -->
-    <TableView fx:id="homeActivityTable" prefHeight="200" prefWidth="600" styleClass="admin-table">
-        <columns>
-            <TableColumn fx:id="activityColumn" prefWidth="600" text="Recent Activity" />
-        </columns>
-    </TableView>
+   <ImageView fitHeight="366.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@pictures/Data-Will-Help-Add-the-Payroll-Function-to-the-Businesses.jpg" />
+      </image>
+   </ImageView>
 
 </VBox>

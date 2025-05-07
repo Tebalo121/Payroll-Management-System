@@ -1,77 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="ane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.payrollsystemmanagement.payroll_reportsController"
-      prefHeight="500.0" prefWidth="600.0">
+      spacing="20" alignment="CENTER" prefWidth="800" prefHeight="900">
 
-    <children>
+    <BarChart fx:id="employeeBarChart" title="Employee Salary Overview" prefHeight="250" prefWidth="700">
+        <xAxis>
+            <CategoryAxis label="Employee Name"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Salary (R)"/>
+        </yAxis>
+    </BarChart>
 
-        <Label layoutX="38.0" layoutY="23.0" text="Payroll Reports">
-            <font>
-                <Font name="Bauhaus 93" size="18.0" />
-            </font>
-        </Label>
+    <PieChart fx:id="salaryPieChart" title="Net Salary Distribution" prefHeight="250" prefWidth="700"/>
 
-        <!-- Bar Chart -->
-        <TabPane fx:id="bar" layoutX="38.0" layoutY="70.0" prefHeight="200.0" prefWidth="200.0"
-                 tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: grey;">
-            <tabs>
-                <Tab text="Bar">
-                    <AnchorPane>
-                        <BarChart fx:id="barChart" layoutX="10" layoutY="10" prefWidth="180" prefHeight="180"
-                                  title="Department Salary" categoryGap="10">
-                            <xAxis>
-                                <CategoryAxis label="Department"/>
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis label="Salary"/>
-                            </yAxis>
-                        </BarChart>
-                    </AnchorPane>
-                </Tab>
-            </tabs>
-        </TabPane>
+    <LineChart fx:id="netSalaryLineChart" layoutX="50.0" layoutY="300.0" prefWidth="700.0" prefHeight="300.0">
+        <xAxis>
+            <CategoryAxis label="Month" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Total Net Salary (R)" />
+        </yAxis>
+    </LineChart>
 
-        <!-- Line Chart -->
-        <TabPane fx:id="graph" layoutX="335.0" layoutY="70.0" prefHeight="200.0" prefWidth="200.0"
-                 tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: grey;">
-            <tabs>
-                <Tab text="Graph">
-                    <AnchorPane>
-                        <LineChart fx:id="lineChart" layoutX="10" layoutY="10" prefWidth="180" prefHeight="180"
-                                   title="Monthly Payroll Trend">
-                            <xAxis>
-                                <CategoryAxis label="Month"/>
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis label="Total Salary"/>
-                            </yAxis>
-                        </LineChart>
-                    </AnchorPane>
-                </Tab>
-            </tabs>
-        </TabPane>
-
-        <!-- Pie Chart -->
-        <TabPane fx:id="pie" layoutX="188.0" layoutY="277.0" prefHeight="200.0" prefWidth="200.0"
-                 tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: grey;">
-            <tabs>
-                <Tab text="Pie Chart">
-                    <AnchorPane>
-                        <PieChart fx:id="pieChart" layoutX="10" layoutY="10" prefWidth="180" prefHeight="180"
-                                  title="Salary Distribution"/>
-                    </AnchorPane>
-                </Tab>
-            </tabs>
-        </TabPane>
-
-    </children>
-</Pane>
+</VBox>

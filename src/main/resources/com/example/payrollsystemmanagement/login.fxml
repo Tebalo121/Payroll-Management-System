@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.payrollsystemmanagement.LoginController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollsystemmanagement.LoginController">
     <top>
-        <HBox alignment="CENTER" prefHeight="70" style="-fx-background-color: orange;">
+        <HBox alignment="CENTER" prefHeight="70" style="-fx-background-color: #0D1B2A;">
             <Label style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="Payroll Management" />
         </HBox>
     </top>
@@ -37,7 +37,7 @@
                 <ComboBox fx:id="roleComboBox" prefHeight="27.0" prefWidth="251.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #2c3e50;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                 <Button fx:id="loginButton" onAction="#handleLogin" style="-fx-background-color: green; -fx-text-fill: white;" text="Login" GridPane.rowIndex="4" />
-                <Button fx:id="registerButton" onAction="#goToRegister" style="-fx-background-color: orange; -fx-text-fill: white;" text="Register" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="registerButton" onAction="#goToRegister" style="-fx-background-color: #1B263B; -fx-text-fill: white;" text="Register" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
